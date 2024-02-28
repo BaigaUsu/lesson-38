@@ -13,8 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('content').appendChild(p);
                 }
             }
+            localStorage.setItem('selectedLanguage', language);
         })
         .catch(error => console.error('Ошибка при загрузке JSON файла:', error));
+    }
+
+    function checkSavedLanguage() {
+        var savedLanguage = localStorage.getItem('selectedLanguage');
+        if (savedLanguage) {
+            loadJSON(savedLanguage);
+        }
     }
 
     document.getElementById('en').addEventListener('click', function() {
@@ -28,4 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('kg').addEventListener('click', function() {
         loadJSON('kg');
     });
+
+    checkSavedLanguage();
 });
+
